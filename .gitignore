@@ -1,3 +1,8 @@
+*.csv
+*.suo
+bin/
+obj/
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
