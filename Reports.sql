@@ -17,7 +17,7 @@ left join (select [owner], count(*) as cnt from [AGOL_ITEMS] where access = 'pub
 left join (select [owner], count(*) as cnt from [AGOL_ITEMS] where access = 'public' and len_snippet is null group by [owner]) as ms on ms.[owner] = i.[owner]
 left join (select [owner], count(*) as cnt from [AGOL_ITEMS] where access = 'public' and thumbnail is null and type not in ('Image', 'PDF') group by [owner]) as mi on mi.[owner] = i.[owner]
 left join (select [owner], count(*) as cnt from [AGOL_ITEMS] where access = 'public' and (len_desc is null or len_snippet is null or (thumbnail is null and type not in ('Image', 'PDF'))) group by [owner]) as tm on tm.[owner] = i.[owner]
-where access = 'public'  and tm.cnt is not null group by d.region, i.[owner], md.cnt, ms.cnt, mi.cnt, tm.cnt order by d.region, i.[owner]
+where access = 'public' and tm.cnt is not null group by d.region, i.[owner], md.cnt, ms.cnt, mi.cnt, tm.cnt order by d.region, i.[owner]
 
 --number of public views by user
 select d.region, i.[owner], sum(numViews) as [views] from [AGOL_ITEMS] as i left join DOMAININFO as d on i.[owner] = d.username where access = 'public' group by d.region, i.[owner] order by [views] desc
