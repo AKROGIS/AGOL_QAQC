@@ -1,3 +1,10 @@
+"""
+ldap requires installation of python-ldap.
+typically this could be done with pip, but It relies on the openldap libraries not available on windows
+I was able to download a whl (python precompiled binary installation file) from
+http://www.lfd.uci.edu/~gohlke/pythonlibs/,  and install with
+\path\to\pip install .\python_ldap-2.4.25-cp27-none-win32.whl
+"""
 import ldap
 import sys
 import getpass
