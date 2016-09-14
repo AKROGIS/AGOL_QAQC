@@ -61,3 +61,7 @@ left join (select [owner], count(*) as cnt from [AGOL_ITEMS] where access = 'pub
 left join MISSING_USERS as m on i.[owner] = m.username 
 where access = 'public' and tm.cnt is not null group by d.region, m.region, i.[owner], md.cnt, ms.cnt, mi.cnt, tm.cnt order by d.region, i.[owner]
 
+--SHEET 9
+--all users needing an AD assignment - No AD record, and NO explanation
+select u.username, u.email from AGOL_USERS as u left join DOMAININFO as d on u.username = d.username left join MISSING_USERS as m on u.username = m.username where d.domain_cn is null and m.Region is null order by u.email
+
