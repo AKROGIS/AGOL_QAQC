@@ -1,0 +1,24 @@
+cd C:\Users\RESarwas\Documents\GitHub\AGOL_QAQC
+# delete or move existing files
+del .\agol_items.csv
+del .\agol_users.csv
+del .\domaininfo.csv
+del .\missing_users.csv
+
+c:\Python27\ArcGIS10.4\python.exe .\agol_items.py -u regan_sarwas@nps.gov -f .\agol_items.csv
+# enter password
+c:\Python27\ArcGIS10.4\python.exe .\agol_users.py -u regan_sarwas@nps.gov -file .\agol_users.csv
+# enter password
+.\query_ldap\query_ldap\bin\Debug\query_ldap.exe .\agol_users.csv .\domaininfo.csv
+
+Open https://docs.google.com/spreadsheets/d/1O-AeEw84kNhO6181JmqTAD25JlpZYgMwt1kz5UoUI9g/edit#gid=0
+and File->Download as->Comma-separated values
+Move/rename the downloaded file from your downloads folder to current directory\missing_users.csv
+
+# import into SQL Server (INPAKRO42492 Scratch)
+#   easiest is to delete the 4 old tables, then use ArcCatalog to import tables(multiple) and browse to the csv files
+
+# Open reports.sql in SQL Server management Studio, and run the reports, and save in a google sheet
+#   in the SSMS results pane, right click and select copy with header
+#   go to the cooresponding sheet and delete all content, then paste results
+#   find and replace (ctrl-H) all 'NULL' with ''
