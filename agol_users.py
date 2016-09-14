@@ -17,29 +17,9 @@ import csv
 import argparse
 import sys
 import datetime
+import getpass
 
 from agoTools.admin import Admin
-
-
-def _raw_input(prompt=None, stream=None, source=None):
-    # A raw_input() replacement that doesn't save the string in the
-    # GNU readline history.
-    if not stream:
-        stream = sys.stderr
-    if not source:
-        source = sys.stdin
-    prompt = str(prompt)
-    if prompt:
-        stream.write(prompt)
-        stream.flush()
-    # NOTE: The Python C API calls flockfile() (and unlock) during readline.
-    line = source.readline()
-    if not line:
-        raise EOFError
-    if line[-1] == '\n':
-        line = line[:-1]
-    return line
-
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-u', '--user')
@@ -51,13 +31,13 @@ parser.add_argument('-portal', '--portal')
 args = parser.parse_args()
 
 if args.user is None:
-    args.user = _raw_input("Username:")
+    args.user = raw_input("Username:")
 
 if args.password is None:
-    args.password = _raw_input("Password:")
+    args.password = getpass.getpass()
 
 if args.file is None:
-    args.file = _raw_input("CSV path: ")
+    args.file = raw_input("Path for CSV results: ")
 
 if args.fields is None:
     args.fields = "username,email,region,disabled,firstName,lastName,userType,lastLogin,access,role,description"
