@@ -2022,6 +2022,7 @@ class _ArcGISConnection(object):
                 resp_data = resp.read()
 
         # Parse the response into JSON
+        print resp_data
         if _log.isEnabledFor(logging.DEBUG):
             _log.debug('RESPONSE: ' + url + ', ' + _unicode_to_ascii(resp_data))
         

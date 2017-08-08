@@ -40,7 +40,7 @@ if args.file is None:
     args.file = raw_input("Path for CSV results: ")
 
 if args.fields is None:
-    args.fields = "username,email,region,disabled,firstName,lastName,userType,lastLogin,access,role,description"
+    args.fields = "username,email,region,disabled,firstName,lastName,userType,created,lastLogin,access,role,description"
 
 if args.portal is None:
     args.portal = "https://nps.maps.arcgis.com"

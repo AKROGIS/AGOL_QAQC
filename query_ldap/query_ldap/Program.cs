@@ -58,6 +58,7 @@ namespace query_ldap
                 return;
             }
             var context = new PrincipalContext(ContextType.Domain, "nps", "DC=nps,DC=doi,DC=net");
+            Console.WriteLine(context.ConnectedServer);
             var file = new List<string>();
             file.Add("username,email,region,login,domain_cn");
             var c = 0;
